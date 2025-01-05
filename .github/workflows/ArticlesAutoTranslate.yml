@@ -53,6 +53,7 @@ jobs:
           
       - name: Checkout the repository to auto-translate-branch
         run: |
+          git pull
           cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/${{ steps.extract-lang.outputs.lang }}/
 
       # Commit the local changes
@@ -67,6 +68,7 @@ jobs:
       - name: Checkout the repository to auto-translate-branch
         run: |
           git checkout -b auto-translate
+          git pull
 
       - name: Articles auto translate
         uses: freeCodeCamp/articles-auto-translate-action@main
