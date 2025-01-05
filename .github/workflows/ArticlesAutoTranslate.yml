@@ -64,14 +64,21 @@ jobs:
           commit_message: '${{ github.event.issue.title }}'
           file_pattern: articles/**/*.md
           commit_user_name: PageToMarkdown Bot
+          commit_user_email: PageToMarkdown-bot@freeCodeCamp.org 
+
+      # Commit the local changes
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '${{ github.event.issue.title }}'
+          file_pattern: articles/**/*.md
+          commit_user_name: PageToMarkdown Bot
           commit_user_email: PageToMarkdown-bot@freeCodeCamp.org
+          branch: "auto-translate"
 
       - name: Checkout the repository to auto-translate-branch
         run: |
           git checkout -b auto-translate
-          git merge origin/auto-translate --strategy-option=ours
-          git branch --set-upstream-to=origin/auto-translate auto-translate
-          git pull
 
       - name: Articles auto translate
         uses: freeCodeCamp/articles-auto-translate-action@main
