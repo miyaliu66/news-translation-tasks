@@ -102,3 +102,4 @@ jobs:
           file_pattern: articles/**/*.md
           commit_user_name: PageToMarkdown Bot
           commit_user_email: PageToMarkdown-bot@freeCodeCamp.org
+          branch: "auto-translate"
