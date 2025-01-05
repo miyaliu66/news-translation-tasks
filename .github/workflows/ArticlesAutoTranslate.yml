@@ -69,6 +69,7 @@ jobs:
       - name: Checkout the repository to auto-translate-branch
         run: |
           git checkout -b auto-translate
+          git merge origin/auto-translate --strategy-option=ours
           git branch --set-upstream-to=origin/auto-translate auto-translate
           git pull
 
