@@ -53,6 +53,7 @@ jobs:
           
       - name: Checkout the repository to auto-translate-branch
         run: |
+          git config pull.rebase true
           git pull
           cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/${{ steps.extract-lang.outputs.lang }}/
 
