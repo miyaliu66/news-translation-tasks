@@ -1,7 +1,7 @@
 ---
 title: "Rahul Pandey quit his $800,000/year FAANG developer job to build a
   startup [Podcast #137]"
-date: 2025-01-05T14:13:44.310Z
+date: 2025-01-05T14:22:56.400Z
 author: Quincy Larson
 authorURL: https://www.freecodecamp.org/news/author/quincy/
 originalURL: https://www.freecodecamp.org/news/rahul-pandey-quit-his-800k-per-year-faang-developer-job-to-build-a-startup-podcast-137/
