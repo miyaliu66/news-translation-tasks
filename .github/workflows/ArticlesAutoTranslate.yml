@@ -44,9 +44,16 @@ jobs:
           commit_user_name: PageToMarkdown Bot
           commit_user_email: PageToMarkdown-bot@freeCodeCamp.org
 
+      - name: Extract language code (e.g., [zh])
+        id: extract-lang
+        run: |
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          LANG_CODE=$(echo "$ISSUE_TITLE" | sed -E 's/^\[([a-zA-Z]+)\].*/\1/')
+          echo "::set-output name=lang::$LANG_CODE"
+          
       - name: Checkout the repository to auto-translate-branch
         run: |
-          cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/{lang}/
+          cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/${{ steps.extract-lang.outputs.lang }}/
           git commit -m '[bot]Auto create article file.'
           git push origin auto-translate
           git checkout -b auto-translate
