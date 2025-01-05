@@ -79,6 +79,8 @@ jobs:
       - name: Checkout the repository to auto-translate-branch
         run: |
           git checkout -b auto-translate
+          git fetch origin
+          git reset --hard origin/auto-translate
 
       - name: Articles auto translate
         uses: freeCodeCamp/articles-auto-translate-action@main
