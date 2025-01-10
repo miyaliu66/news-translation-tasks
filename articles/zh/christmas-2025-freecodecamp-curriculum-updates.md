@@ -4,11 +4,11 @@ date: 2025-01-10T15:18:43.371Z
 author: Quincy Larson
 authorURL: https://www.freecodecamp.org/news/author/quincy/
 originalURL: https://www.freecodecamp.org/news/christmas-2025-freecodecamp-curriculum-updates/
-posteditor: ""
+posteditor: "miyaliu66"
 proofreader: ""
 ---
 
-圣诞快乐，露营者们！🎄 freeCodeCamp 刚刚发布了大量免费的学习工具，供您在假期中深入学习：
+圣诞快乐，campers！🎄 freeCodeCamp 刚刚发布了大量免费的学习工具，供您在假期中深入学习：
 
 <!-- more -->
 
