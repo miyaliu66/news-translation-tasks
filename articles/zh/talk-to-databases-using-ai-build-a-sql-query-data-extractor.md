@@ -5,7 +5,7 @@ date: 2025-01-10T14:44:05.268Z
 author: Prankur Pandey
 authorURL: https://www.freecodecamp.org/news/author/prankurpandeyy/
 originalURL: https://www.freecodecamp.org/news/talk-to-databases-using-ai-build-a-sql-query-data-extractor/
-posteditor: ""
+posteditor: "66"
 proofreader: ""
 ---
 
