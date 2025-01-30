@@ -4,7 +4,7 @@ date: 2025-01-10T15:50:50.118Z
 author: Quincy Larson
 authorURL: https://www.freecodecamp.org/news/author/quincy/
 originalURL: https://www.freecodecamp.org/news/how-to-get-a-developer-job-even-in-this-economy-james-q-quick-podcast-153/
-posteditor: ""
+posteditor: "test"
 proofreader: ""
 ---
 
