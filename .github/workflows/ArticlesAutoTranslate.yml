@@ -35,7 +35,7 @@ jobs:
             rm -rf ./articles/_tmp/
           fi
           
-      # Fetch webpage article to markdown, and save it to '_tmp'
+      # Fetch webpage article to markdown, and save it to '_raw'
       - uses: actions/checkout@v3
       - name: Crawl pages and generate Markdown files
         id: fetch-webpage-to-markdown
@@ -62,7 +62,6 @@ jobs:
           git add articles/${{ steps.extract-lang.outputs.lang }}/*.md
           git commit -m 'Save article markdown.'
           git push origin main
-          git merge main
           git checkout -b auto-translate
           git fetch origin
           git reset --soft origin/auto-translate
