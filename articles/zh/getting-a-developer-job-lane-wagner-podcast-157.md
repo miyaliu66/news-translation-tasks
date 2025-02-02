@@ -4,11 +4,11 @@ date: 2025-02-02T14:15:46.268Z
 author: Quincy Larson
 authorURL: https://www.freecodecamp.org/news/author/quincy/
 originalURL: https://www.freecodecamp.org/news/getting-a-developer-job-lane-wagner-podcast-157/
-posteditor: ""
+posteditor: "test"
 proofreader: ""
 ---
 
-在本周的播客节目中，我采访了 Lane Wagner。他是一位软件工程师，freeCodeCamp 的多产贡献者，以及在线学习平台 Boot.dev 的创始人。
+在本周的播客节目中，我采访了 Lane Wagner。他是一位软件工程师，是 freeCodeCamp 的多产贡献者，以及在线学习平台 Boot.dev 的创始人。
 
 <!-- more -->
 
