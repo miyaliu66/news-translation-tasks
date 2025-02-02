@@ -5,7 +5,7 @@ author: Quincy Larson
 authorURL: https://www.freecodecamp.org/news/author/quincy/
 originalURL: https://www.freecodecamp.org/news/rahul-pandey-quit-his-800k-per-year-faang-developer-job-to-build-a-startup-podcast-137/
 posteditor: ""
-proofreader: ""
+proofreader: " "
 ---
 
 在本周的播客节目中，freeCodeCamp 的创始人 Quincy Larson 采访了 Rahul Pandey。他是一名软件工程师，辞去了年薪80万美元的 FAANG 工作去创建自己的初创公司。
