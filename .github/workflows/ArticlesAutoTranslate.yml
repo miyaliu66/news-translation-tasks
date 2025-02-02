@@ -40,6 +40,9 @@ jobs:
       - name: Process main branch.
         run: |
           git checkout main
+          if [ -d "./articles/_tmp/" ]; then
+            rm -rf ./articles/_tmp/
+          fi
 
       - name: Crawl pages and generate Markdown files
         id: fetch-webpage-to-markdown
@@ -59,6 +62,7 @@ jobs:
         run: |
           cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/${{ steps.extract-lang.outputs.lang }}/
           cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/_raw/
+          git add articles/_tmp/*.md
           git add articles/_raw/*.md
           git add articles/${{ steps.extract-lang.outputs.lang }}/*.md
           git commit -m 'Save article markdown.'
@@ -68,10 +72,8 @@ jobs:
       - name: Git checkout auto-translate
         run: |
           git fetch
-          git stash save '_tmp'
           git checkout -b auto-translate origin/auto-translate
           git merge --strategy=recursive --strategy-option=theirs --allow-unrelated-histories main
-          git stash pop
 
       # 自动翻译文章
       - name: Articles auto translate
@@ -91,8 +93,23 @@ jobs:
       # 提交爬取的原文和翻译后的文章到远程
       - name: Commit raw article and auto-translated-article.
         run: |
-          rm -rf ./articles/_tmp/
+          if [ -d "./articles/_tmp/" ]; then
+            rm -rf ./articles/_tmp/
+          fi
+          git add ./articles/_tmp/*
           git add ./articles/_raw/*.md
           git add ./articles/${{ steps.extract-lang.outputs.lang }}/*.md
           git commit -m 'Save auto-translated article markdown.'
           git push origin auto-translate
+
+      
+      # 移除 main 分支的 _tmp
+      - name: rm _tmp
+        run: |
+          git checkout main
+          if [ -d "./articles/_tmp/" ]; then
+            rm -rf ./articles/_tmp/
+          fi
+          git add ./articles/_tmp/*
+          git commit -m 'rm _tmp.'
+          git push origin main
