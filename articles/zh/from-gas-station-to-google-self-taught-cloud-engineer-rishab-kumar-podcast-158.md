@@ -1,6 +1,5 @@
 ---
-title: "From Gas Station to Google with Self-Taught Cloud Engineer Rishab Kumar
-  [Podcast #158]"
+title: "从加油站到谷歌：自学成才的云工程师 Rishab Kumar [播客 #158]"
 date: 2025-02-02T14:09:41.935Z
 author: Quincy Larson
 authorURL: https://www.freecodecamp.org/news/author/quincy/
@@ -9,40 +8,40 @@ posteditor: ""
 proofreader: ""
 ---
 
-On this week's episode of the podcast, freeCodeCamp founder Quincy Larson interviews Rishab Kumar, cloud engineer and developer advocate at Twillio.
+在本周的播客节目中，freeCodeCamp 的创始人 Quincy Larson 采访了 Twillio 的云工程师和开发者倡导者 Rishab Kumar。
 
 <!-- more -->
 
-Rishab grew up in India and moved to Canada for school. But he couldn't afford to finish. He resorted to delivering pizzas and working at a gas station. But he worked hard to teach himself how to code and how to build cloud infrastructure, and eventually got a job Google.
+Rishab 在印度长大，后来为了学业搬到加拿大。但他无法负担学费，只能送披萨和在加油站工作。但他努力自学编程和云基础设施搭建，最终在谷歌找到了工作。
 
-We talk about:
+我们谈到了：
 
--   How to teach yourself cloud engineering
+- 如何自学云工程
     
--   Getting repeatedly rejected from FAANG jobs but persisting
+- 屡次被 FAANG 公司拒绝但仍坚持不懈
     
--   Filling up the Infinity Gauntlet with cloud certifications
+- 用云认证填满无限手套
     
--   How DevOps and Cloud Engineering are changing
+- DevOps 和云工程如何正在改变
     
 
-Support for this podcast comes from the 11,043 kind folks who support freeCodeCamp through a monthly donation. Join these kind folks and help our mission by going to [https://www.freecodecamp.org/donate][1]
+本播客得到了 11,043 位通过月度捐赠支持 freeCodeCamp 的好心人的资助。加入这些好心人，通过访问 [https://www.freecodecamp.org/donate][1] 来帮助我们完成使命。
 
-You can watch the podcast on YouTube below:
+你可以在下面的 YouTube 上观看播客：
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8JLtPIhQduU" style="aspect-ratio: 16 / 9; width: 100%; height: auto;" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8JLtPIhQduU" style="aspect-ratio: 16 / 9; width: 100%; height: auto;" title="YouTube 视频播放器" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe>
 
-Or you can listen to the podcast in Apple Podcasts, Spotify, or your favorite podcast app. Be sure to follow the freeCodeCamp Podcast there so you'll get new episodes each Friday.
+或者你可以在 Apple Podcasts、Spotify 或你喜欢的播客应用中收听。请务必关注 freeCodeCamp 播客，这样每周五你都会收到新一期的节目。
 
-Links we talk about during our conversation:
+我们在对话中谈到的链接：
 
--   Rishab's Terraform course on freeCodeCamp: [https://www.freecodecamp.org/news/how-to-use-terraform-to-deploy-a-site-on-google-cloud-platform/][2]
+- Rishab 在 freeCodeCamp 的 Terraform 课程: [https://www.freecodecamp.org/news/how-to-use-terraform-to-deploy-a-site-on-google-cloud-platform/][2]
     
--   Rishab's LangChain LLM deployment course on freeCodeCamp: [https://www.freecodecamp.org/news/learn-langchain-for-llm-development/][3]
+- Rishab 在 freeCodeCamp 的 LangChain LLM 部署课程: [https://www.freecodecamp.org/news/learn-langchain-for-llm-development/][3]
     
--   Learn to Cloud guide by Rishab and his friend at Microsoft, Gwyn: [https://learntocloud.guide/][4]
+- Rishab 和他在微软的朋友 Gwyn 合作的 Learn to Cloud 指南: [https://learntocloud.guide/][4]
     
--   Rishab's YouTube channel [https://www.youtube.com/@rishabincloud/videos][5]
+- Rishab 的 YouTube 频道 [https://www.youtube.com/@rishabincloud/videos][5]
     
 
 [1]: https://www.freecodecamp.org/donate
@@ -50,3 +49,4 @@ Links we talk about during our conversation:
 [3]: https://www.freecodecamp.org/news/learn-langchain-for-llm-development/
 [4]: https://learntocloud.guide/
 [5]: https://www.youtube.com/@rishabincloud/videos
+
