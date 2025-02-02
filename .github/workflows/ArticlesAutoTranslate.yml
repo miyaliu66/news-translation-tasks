@@ -67,6 +67,7 @@ jobs:
       # 切换到远程 auto-translate 分支
       - name: Git checkout auto-translate
         run: |
+          git fetch
           git checkout -b auto-translate origin/auto-translate
           git merge --strategy=recursive --strategy-option=theirs --allow-unrelated-histories main
 
