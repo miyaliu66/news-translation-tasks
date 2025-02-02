@@ -101,3 +101,15 @@ jobs:
           git add ./articles/${{ steps.extract-lang.outputs.lang }}/*.md
           git commit -m 'Save auto-translated article markdown.'
           git push origin auto-translate
+
+      
+      # 移除 main 分支的 _tmp
+      - name: rm _tmp
+        run: |
+          git checkout main
+          if [ -d "./articles/_tmp/" ]; then
+            rm -rf ./articles/_tmp/
+          fi
+          git add ./articles/_tmp/*
+          git commit -m 'rm _tmp.'
+          git push origin main
