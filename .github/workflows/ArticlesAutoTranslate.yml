@@ -40,6 +40,9 @@ jobs:
       - name: Process main branch.
         run: |
           git checkout main
+          if [ -d "./articles/_tmp/" ]; then
+            rm -rf ./articles/_tmp/
+          fi
 
       - name: Crawl pages and generate Markdown files
         id: fetch-webpage-to-markdown
@@ -91,7 +94,9 @@ jobs:
       # 提交爬取的原文和翻译后的文章到远程
       - name: Commit raw article and auto-translated-article.
         run: |
-          rm -rf ./articles/_tmp/
+          if [ -d "./articles/_tmp/" ]; then
+            rm -rf ./articles/_tmp/
+          fi
           git add ./articles/_raw/*.md
           git add ./articles/${{ steps.extract-lang.outputs.lang }}/*.md
           git commit -m 'Save auto-translated article markdown.'
