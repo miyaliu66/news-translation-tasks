@@ -68,8 +68,10 @@ jobs:
       - name: Git checkout auto-translate
         run: |
           git fetch
+          git stash save '_tmp'
           git checkout -b auto-translate origin/auto-translate
           git merge --strategy=recursive --strategy-option=theirs --allow-unrelated-histories main
+          git stash pop
 
       # 自动翻译文章
       - name: Articles auto translate
