@@ -12,20 +12,39 @@ jobs:
     permissions:
       issues: write
       contents: write
-    # Check if the label is 'auto'. If not, skip the entire job.
+    # Check if the label is 'auto'. If not, skip the entire job
     if: ${{ github.event.label.name == 'auto' }}
     steps:
-      # Check if the issue body is empty. If so, exit the action.
+      # Check if the issue body is empty. If so, exit the action
       - name: Check if the description of the issue is empty
         if: ${{ !github.event.issue.body }}
         shell: bash
         run: echo "The description of the issue is empty." 1>&2; exit 1;
 
+      - name: Extract language code (e.g., [zh])
+        id: extract-lang
+        run: |
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          LANG_CODE=$(echo "$ISSUE_TITLE" | sed -E 's/^\[([a-zA-Z]+)\].*/\1/')
+          echo "::set-output name=lang::$LANG_CODE"
+
+      # 初始化 git 参数
       - uses: actions/checkout@v3
+      - name: Config git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git config pull.rebase true
+
+      # 先处理 main 分支，仅爬取新文章
+      - name: Process main branch.
+        run: |
+          git checkout main
+
       - name: Crawl pages and generate Markdown files
         id: fetch-webpage-to-markdown
         continue-on-error: true
-        uses: freeCodeCamp/article-webpage-to-markdown-action@dev
+        uses: freecodecamp/article-webpage-to-markdown-action@dev
         with:
           newsLink: '${{ github.event.issue.Body }}'
           includeSelector: 'span.author-card-name,section.post-content'
@@ -34,44 +53,29 @@ jobs:
           skipIssueComment: true
           markDownFilePath: './articles/_tmp/'
           githubToken: '${{ github.token }}'
-          
-      # Commit the local changes
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: '${{ github.event.issue.title }}'
-          file_pattern: articles/**/*.md
-          commit_user_name: PageToMarkdown Bot
-          commit_user_email: PageToMarkdown-bot@freeCodeCamp.org
 
-      - name: Extract language code (e.g., [zh])
-        id: extract-lang
+      # 提交爬取的新文章到远程
+      - name: Push new article to repo.
         run: |
-          ISSUE_TITLE="${{ github.event.issue.title }}"
-          LANG_CODE=$(echo "$ISSUE_TITLE" | sed -E 's/^\[([a-zA-Z]+)\].*/\1/')
-          echo "::set-output name=lang::$LANG_CODE"
-          
-      - name: Checkout the repository to auto-translate-branch
-        run: |
-          git pull
           cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/${{ steps.extract-lang.outputs.lang }}/
+          cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/_raw/
+          git add articles/_raw/*.md
+          git add articles/${{ steps.extract-lang.outputs.lang }}/*.md
+          git commit -m 'Save article markdown.'
+          git push origin main
 
-      # Commit the local changes
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: '${{ github.event.issue.title }}'
-          file_pattern: articles/**/*.md
-          commit_user_name: PageToMarkdown Bot
-          commit_user_email: PageToMarkdown-bot@freeCodeCamp.org
-
-      - name: Checkout the repository to auto-translate-branch
+      # 切换到远程 auto-translate 分支
+      - name: Git checkout auto-translate
         run: |
-          git checkout -b auto-translate
-          git pull
+          git fetch
+          git stash save '_tmp'
+          git checkout -b auto-translate origin/auto-translate
+          git merge --strategy=recursive --strategy-option=theirs --allow-unrelated-histories main
+          git stash pop
 
+      # 自动翻译文章
       - name: Articles auto translate
-        uses: freeCodeCamp/articles-auto-translate-action@main
+        uses: miyaliu666/articles-auto-translate-action@main
         with:
           with_issue_title: '${{ github.event.issue.title }}'
           with_issue_body: '${{ github.event.issue.Body }}'
@@ -84,11 +88,11 @@ jobs:
           with_task_translate_openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           with_task_translate_to_save_path: './articles/{lang}/'
 
-      # Commit the local changes
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: '${{ github.event.issue.title }}'
-          file_pattern: articles/**/*.md
-          commit_user_name: PageToMarkdown Bot
-          commit_user_email: PageToMarkdown-bot@freeCodeCamp.org
+      # 提交爬取的原文和翻译后的文章到远程
+      - name: Commit raw article and auto-translated-article.
+        run: |
+          rm -rf ./articles/_tmp/
+          git add ./articles/_raw/*.md
+          git add ./articles/${{ steps.extract-lang.outputs.lang }}/*.md
+          git commit -m 'Save auto-translated article markdown.'
+          git push origin auto-translate
