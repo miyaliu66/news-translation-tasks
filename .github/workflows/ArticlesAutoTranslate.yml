@@ -97,6 +97,7 @@ jobs:
           if [ -d "./articles/_tmp/" ]; then
             rm -rf ./articles/_tmp/
           fi
+          git add ./articles/_tmp/*
           git add ./articles/_raw/*.md
           git add ./articles/${{ steps.extract-lang.outputs.lang }}/*.md
           git commit -m 'Save auto-translated article markdown.'
