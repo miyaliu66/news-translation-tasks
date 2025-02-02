@@ -65,6 +65,7 @@ jobs:
           git checkout -b auto-translate
           git fetch origin
           git reset --soft origin/auto-translate
+          git merge --strategy=recursive --strategy-option=ours main
           cp -f ${{ steps.fetch-webpage-to-markdown.outputs.markdown_file_path }} ./articles/${{ steps.extract-lang.outputs.lang }}/
 
       # Translate
