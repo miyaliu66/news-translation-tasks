@@ -8,9 +8,7 @@ posteditor: ""
 proofreader: ""
 ---
 
-在本周的播客节目中，我采访了 Lane Wagner。他是一位软件工程师，freeCodeCamp 的多产贡献者，以及在线学习平台 Boot.dev 的创始人。
-
-<!-- more -->
+在本周的播客节目中，我采访了 Lane Wagner。他是一位软件工程师，freeCodeCamp 的多产贡献者，以及在线学习平台 Boot.dev 的创始人
 
 我们讨论了：
 
