@@ -1,55 +1,33 @@
-name: Format PR Files
+name: Auto close non-main PRs.
 
 on:
   pull_request:
-    paths:
-      - '**/*.md'  # Trigger workflow only when .md files are modified in the PR
+    branches-ignore:
+      - main
 
 jobs:
-  whitespace:
+  close-pr-if-not-main:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Close PRs.
+        uses: actions/github-script@v7
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+          script: |
+            const baseBranch = context.payload.pull_request.base.ref;
+            console.log(`Base branch: ${baseBranch}`);
 
-      - name: Remove trailing whitespaces from Markdown files
-        run: |
-          echo "Target branch: ${{ github.event.pull_request.base.ref }}"
-          echo "Head branch: ${{ github.event.pull_request.head.ref }}"
-          
-          # Get the base commit between the target branch (main) and the source branch (HEAD)
-          base_branch="${{ github.event.pull_request.base.ref }}"
-          head_branch="${{ github.event.pull_request.head.ref }}"
-          
-          git fetch origin $base_branch
-          git fetch origin $head_branch
-          
-          base_commit=$(git merge-base origin/$base_branch origin/$head_branch)
-          echo "Base commit: $base_commit"
-          
-           # Get the changed files in the current PR
-          echo "Checking changes in PR..."
-          files=$(git diff --name-only $base_commit origin/$head_branch)
-          echo "Changed files: $files"
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "This pull request cannot be merged because the base branch is not 'main'. Please change the base branch to 'main'."
+            });
 
-          # Filter out .md files
-          file=$(echo "$files" | grep '\.md$')
-          echo "Filtered .md file: $file"
-
-          if [ -n "$file" ]; then
-            echo "Processing file: $file"
-            # Remove trailing spaces from each line in the file
-            sed -i 's/[[:space:]]*$//g' "$file"
-          fi
-
-      - name: Push changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: Remove trailing spaces
-          default_author: github_actions
+            await github.rest.pulls.update({
+              pull_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
+            });
